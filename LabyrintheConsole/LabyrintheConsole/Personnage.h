@@ -6,21 +6,28 @@
 class CPersonnage
 {
 public:
-	static const char m_avatar = 'Q';//'☺'; 
-	static const int nbrDePasDefaut = 30;
-	static const int visionDefaut = 3;
-	CPersonnage(Pos position, CLabyrinthe * Lab);
-	void Bouger(int virtualKeyDirection);
-	int GetNbreDePas(){ return m_nbrDePas; }
-	int GetVision(){ return m_vision; }
-	Pos GetPosition(){ return m_position; }
+	static const char m_avatar = 'Q';//'☺';
+	static enum controle { HAUT, DROITE, BAS, GAUCHE, QUITTER };
+	static const int NBREDEPASDEFAUT = 30;
+	static const int VISIONDEFAUT = 3;
+	
+	int GetNbreDePas() const { return m_nbrDePas; }
+	int GetVision() const { return m_vision; }
+	Pos GetPosition() const { return m_position; }	
+	
+	Pos Destination(controle direction);
+	void SetPosition(Pos p);
+	void SetPosition(const int x, const int y);
+
+	CPersonnage(Pos position);
 	CPersonnage() = delete;
 	~CPersonnage() = default;
+
 private:
 	int m_nbrDePas;
 	int m_vision;
 	Pos m_position;
-	CLabyrinthe* m_labyrinthe;
-	void EssayerDeplacement(int NouvellePosX, int NouvellePosY);
+	
+	
 };
 

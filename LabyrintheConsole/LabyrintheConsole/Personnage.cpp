@@ -1,41 +1,45 @@
 #pragma once
 #include "Personnage.h"
 
-CPersonnage::CPersonnage(Pos depart ,CLabyrinthe * Lab)
+CPersonnage::CPersonnage(Pos depart) 
+	: m_position{ depart }, m_nbrDePas{ NBREDEPASDEFAUT }, m_vision{ VISIONDEFAUT }
 {
-	m_position.x = depart.x;
-	m_position.y = depart.y;
-	m_nbrDePas = nbrDePasDefaut;
-	m_vision = visionDefaut;
-	m_labyrinthe = Lab;
+		
 }
 
-void CPersonnage::Bouger(int virtualKey)
+
+
+void CPersonnage::SetPosition(Pos p)
 {
-	switch (virtualKey)
+	m_position = p;
+}
+void CPersonnage::SetPosition(const int x, const int y)
+{
+	m_position.x = x;
+	m_position.y = y;
+}
+
+
+Pos CPersonnage::Destination(controle direction)
+{	
+	Pos destination(CPersonnage::GetPosition());
+
+	switch (direction)
 	{
-	case VK_UP:
-		EssayerDeplacement(m_position.x -1, m_position.y);
+	case HAUT:
+		SetPosition(m_position.x -1, m_position.y);
 		break;
-	case VK_RIGHT:
-		EssayerDeplacement(m_position.x, m_position.y +1);
+	case DROITE:
+		SetPosition(m_position.x, m_position.y + 1);
 		break;
-	case VK_DOWN:
-		EssayerDeplacement(m_position.x + 1, m_position.y);
+	case BAS:
+		SetPosition(m_position.x + 1, m_position.y);
 		break;
-	case VK_LEFT:
-		EssayerDeplacement(m_position.x , m_position.y -1);
+	case GAUCHE:
+		SetPosition(m_position.x, m_position.y - 1);
 		break;
 	default:
 		break; 
 	}
-}
-
-void CPersonnage::EssayerDeplacement(int NouvellePosX, int NouvellePosY)
-{
-	if (m_labyrinthe->LireCase(NouvellePosX, NouvellePosY) != CLabyrinthe::disponibiliteCase::MUR)
-	{
-		m_position.x = NouvellePosX;
-		m_position.y = NouvellePosY;
-	}
+	return destination;
 }

@@ -4,7 +4,7 @@
 
 CPartie::CPartie(std::string filePath) :m_Lab(filePath)
 {
-	m_Personnage = new CPersonnage(m_Lab.GetDebut(),&m_Lab);
+	m_Personnage = new CPersonnage(m_Lab.GetDebut());
 }
 void CPartie::JouerUnePartie()
 {
