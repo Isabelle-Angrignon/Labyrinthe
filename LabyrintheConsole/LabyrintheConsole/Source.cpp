@@ -3,6 +3,8 @@
 #include <string>
 #include <bitset>
 #include <cmath>
+#include "Menu.h"
+#include "Commande.h"
 using namespace std;
 
 int ReadInput()
@@ -52,15 +54,31 @@ bool WriteInput(int Arrow)
 	}
 	return true;
 }
+bool WriteInput(Commande c)
+{
+	if (c == Menu::HAUT) cout << "^" << endl;
+	if (c == Menu::BAS) cout << "V" << endl;
+	if (c == Menu::GAUCHE) cout << "<" << endl;
+	if (c == Menu::DROITE) cout << ">" << endl;
+	if (c == Menu::QUITTER) return false;
+	return true;
+}
 
 int main()
 {
-	bool IsNotEnd = true;
+	/*bool IsNotEnd = true;
 	while (IsNotEnd)
 	{
 		int Arrows = ReadInput();
 		IsNotEnd = WriteInput(Arrows);
+	}*/
+	bool IsNotEnd = true;
+	while (IsNotEnd)
+	{
+		Commande c = Menu::LireCommande();
+		IsNotEnd = WriteInput(c);
 	}
+
 }
 
 
