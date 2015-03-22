@@ -6,7 +6,7 @@
 class CPersonnage
 {
 public:
-	static const char m_avatar = '☺'; 
+	static const char m_avatar = 'Q';//'☺'; 
 	static const int nbrDePasDefaut = 30;
 	static const int visionDefaut = 3;
 	CPersonnage(Pos position, CLabyrinthe * Lab);

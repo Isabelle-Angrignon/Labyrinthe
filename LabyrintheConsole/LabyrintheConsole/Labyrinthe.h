@@ -1,7 +1,7 @@
 ﻿#pragma once
 #include <string>
 #include <vector>
-#include <utility>
+//#include <utility>
 #include <sstream>
 #include "Pos.h"
 
@@ -16,9 +16,7 @@ std::vector<std::string> split(const std::string &s, char delim);
 
 class CLabyrinthe
 {	 
-public:
-
-	
+public:	
 	static enum disponibiliteCase { MUR = 0,  LIBRE, ENTREE, SORTIE, ITEM};  
 	static const int LARGEURMAX = 80;      //Maximum affichable en console
 	static const int HAUTEURMAX = LARGEURMAX; //garder un format carré

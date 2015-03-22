@@ -16,4 +16,16 @@ public:
 	{
 		return !(*this == p);
 	}
+	bool operator<(const Pos &p) const throw()
+	{
+		bool plusPetit = false;
+		if (y < p.y)
+			plusPetit = true;
+		else if (y == p.y)
+		{
+			if (x < p.x)
+				plusPetit = true;
+		}
+		return plusPetit;
+	}
 };

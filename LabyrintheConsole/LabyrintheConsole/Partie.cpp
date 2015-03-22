@@ -1,3 +1,4 @@
+#pragma once
 #include "Partie.h"
 #include "Pos.h"
 
@@ -28,7 +29,7 @@ void CPartie::afficher()
 					std::cout << m_Personnage->m_avatar;
 				else
 					std::cout << CaseVisible[ParcourirCaseVisible].second;
-				if (ParcourirCaseVisible + 1 < CaseVisible.size())
+				if (ParcourirCaseVisible + 1 < (int)CaseVisible.size())
 					++ParcourirCaseVisible;
 			}
 			else

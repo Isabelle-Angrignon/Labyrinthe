@@ -194,19 +194,25 @@ CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(Pos p) const
 
 std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCasesVisibles(Pos posJoueur, int radiusVue) const
 {
-	//todo //////////////////////////////////////
-
 	std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> cases;
 
 	//Définir les bornes de la vision
 	int dV = posJoueur.y - radiusVue > 0 ? posJoueur.y - radiusVue : 0;
-	int fV = posJoueur.y + radiusVue < GetHauteur() ? posJoueur.y + radiusVue : GetHauteur()- 1;
+	int fV = posJoueur.y + radiusVue < GetHauteur() ? posJoueur.y + radiusVue : GetHauteur() - 1;
 	int dH = posJoueur.x - radiusVue > 0 ? posJoueur.x - radiusVue : 0;
 	int fH = posJoueur.x + radiusVue < GetLargeur() ? posJoueur.x + radiusVue : GetLargeur() - 1;
 
+	std::pair<Pos, CLabyrinthe::disponibiliteCase> uneCase;
+
 	for (int i = dV; i < fV; ++i)
+	{
 		for (int j = dH; j < fH; ++j)
-			cases.push_back(std::make_pair(Pos(j, i), m_grille[i][j]));
+		{
+			uneCase = std::make_pair(Pos(j, i), m_grille[i][j]);
+			cases.push_back(uneCase);
+		}		
+	}
+		
 	return cases;
 }
 

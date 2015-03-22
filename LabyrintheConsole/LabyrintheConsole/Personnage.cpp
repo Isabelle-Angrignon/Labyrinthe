@@ -1,3 +1,4 @@
+#pragma once
 #include "Personnage.h"
 
 CPersonnage::CPersonnage(Pos depart ,CLabyrinthe * Lab)
