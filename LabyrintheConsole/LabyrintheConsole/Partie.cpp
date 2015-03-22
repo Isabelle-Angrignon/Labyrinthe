@@ -42,7 +42,8 @@ void CPartie::Executer(const Commande &c)
 	if (c == Menu::HAUT)
 	{
 		//valider jouer.destin est valide
-		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::HAUT)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		CLabyrinthe::disponibiliteCase dispo = m_Lab.LireCase(m_Personnage.Destination(CPersonnage::HAUT));
+		if (dispo != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::HAUT));
 		}
@@ -50,7 +51,8 @@ void CPartie::Executer(const Commande &c)
 	if (c == Menu::BAS)
 	{
 		//valider jouer.destin est valide
-		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::BAS)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		CLabyrinthe::disponibiliteCase dispo = m_Lab.LireCase(m_Personnage.Destination(CPersonnage::BAS));
+		if (dispo != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::BAS));
 		}
@@ -58,7 +60,8 @@ void CPartie::Executer(const Commande &c)
 	if (c == Menu::DROITE)
 	{
 		//valider jouer.destin est valide
-		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::DROITE)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		CLabyrinthe::disponibiliteCase dispo = m_Lab.LireCase(m_Personnage.Destination(CPersonnage::DROITE));
+		if (dispo != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::DROITE));
 		}
@@ -66,7 +69,7 @@ void CPartie::Executer(const Commande &c)
 	if (c == Menu::GAUCHE)
 	{
 		//valider jouer.destin est valide
-		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::GAUCHE)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::GAUCHE)) != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::GAUCHE));
 		}

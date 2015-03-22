@@ -8,8 +8,6 @@ using namespace std;
 
 int main()
 {
-	
-
 	CPartie MonJeu("Labyrinthe.csv");
 	MonJeu.AfficherEtat();
 	Commande c;
@@ -19,11 +17,6 @@ int main()
 		MonJeu.Executer(c);
 		MonJeu.AfficherEtat();
 	}
-
-
-
-
 	
-
 	return 0;
 }

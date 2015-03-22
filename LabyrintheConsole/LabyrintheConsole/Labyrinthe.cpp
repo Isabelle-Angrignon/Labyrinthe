@@ -189,7 +189,7 @@ CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(int x, int y) const
 
 CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(Pos p) const
 {	
-	return LireCase(p.y,p.x);
+	return LireCase(p.x, p.y);
 }
 
 std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCasesVisibles(Pos posJoueur, int radiusVue) const
