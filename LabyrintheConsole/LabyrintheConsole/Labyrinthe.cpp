@@ -3,7 +3,7 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
-#include <xutility>
+
 
 
 // hors contexte, utilitaire
@@ -154,7 +154,7 @@ bool CLabyrinthe::placerItemCase(Pos caseAEmplir)
 	bool libre = false;
 	if (m_grille[caseAEmplir.y][caseAEmplir.x] == LIBRE)
 	{
-		m_grille[caseAEmplir.y][caseAEmplir.x] == ITEM;		
+		m_grille[caseAEmplir.y][caseAEmplir.x] = ITEM;		
 		
 		int p = 0;
 		for (auto i = begin(m_casesLibres); i < end(m_casesLibres); ++i, ++p)
@@ -174,7 +174,7 @@ bool CLabyrinthe::enleverItemCase(Pos caseAVider)
 	bool libre = false;
 	if (m_grille[caseAVider.y][caseAVider.x] == ITEM)
 	{
-		m_grille[caseAVider.y][caseAVider.x] == LIBRE;
+		m_grille[caseAVider.y][caseAVider.x] = LIBRE;
 		m_casesLibres.push_back(caseAVider);
 		sort(begin(m_casesLibres), end(m_casesLibres));		
 	}
@@ -200,7 +200,7 @@ std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCas
 
 	//Définir les bornes de la vision
 	int dV = posJoueur.y - radiusVue > 0 ? posJoueur.y - radiusVue : 0;
-	int fV = posJoueur.y + radiusVue < GetHauteur() ? posJoueur.y + radiusVue : GetHauteur()-1;
+	int fV = posJoueur.y + radiusVue < GetHauteur() ? posJoueur.y + radiusVue : GetHauteur()- 1;
 	int dH = posJoueur.x - radiusVue > 0 ? posJoueur.x - radiusVue : 0;
 	int fH = posJoueur.x + radiusVue < GetLargeur() ? posJoueur.x + radiusVue : GetLargeur() - 1;
 
