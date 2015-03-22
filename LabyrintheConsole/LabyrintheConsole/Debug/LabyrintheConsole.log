@@ -1,0 +1,15 @@
+﻿La génération a démarré 2015-03-20 18:57:24.
+     1>Projet "C:\Users\Isabelle\Google Drive\15-a-Hiver\Tech nouvelles\MVS\LabyrintheConsole\LabyrintheConsole\LabyrintheConsole.vcxproj" sur le nœud 2 (Build cible(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Labyrinthe.cpp
+         Labyrinthe.cpp
+     1>c:\users\isabelle\google drive\15-a-hiver\tech nouvelles\mvs\labyrintheconsole\labyrintheconsole\labyrinthe.h(17): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
+     1>c:\users\isabelle\google drive\15-a-hiver\tech nouvelles\mvs\labyrintheconsole\labyrintheconsole\labyrinthe.h(18): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
+     1>c:\users\isabelle\google drive\15-a-hiver\tech nouvelles\mvs\labyrintheconsole\labyrintheconsole\labyrinthe.cpp(157): warning C4553: '==' : opérateur sans effet ; souhaitiez-vous '=' ?
+     1>c:\users\isabelle\google drive\15-a-hiver\tech nouvelles\mvs\labyrintheconsole\labyrintheconsole\labyrinthe.cpp(177): warning C4553: '==' : opérateur sans effet ; souhaitiez-vous '=' ?
+     1>c:\users\isabelle\google drive\15-a-hiver\tech nouvelles\mvs\labyrintheconsole\labyrintheconsole\labyrinthe.cpp(208): error C3861: 'make_pair' : identificateur introuvable
+     1>Génération du projet "C:\Users\Isabelle\Google Drive\15-a-Hiver\Tech nouvelles\MVS\LabyrintheConsole\LabyrintheConsole\LabyrintheConsole.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
+
+ÉCHEC de la build.
+
+Temps écoulé 00:00:00.47
