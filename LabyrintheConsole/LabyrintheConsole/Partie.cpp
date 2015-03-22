@@ -1,67 +1,82 @@
 #pragma once
 #include "Partie.h"
 #include "Pos.h"
+#include "Menu.h"
+#include "Commande.h"
 
-CPartie::CPartie(std::string filePath) : m_Lab(filePath), m_Personnage(m_Lab.GetDebut())
+CPartie::CPartie(std::string filePath) 
+	: m_Lab(filePath), m_Personnage(m_Lab.GetDebut()), m_Sortie(m_Lab.GetFin())
 {
-	 
+	//std::cout << m_Personnage.GetPosition().x << " " << m_Personnage.GetPosition().y << std::endl;
 }
-
 
 void CPartie::AfficherEtat() const
 {
 	using namespace std;
 	vector<pair<Pos, CLabyrinthe::disponibiliteCase>> CaseVisible = m_Lab.LireCasesVisibles(m_Personnage.GetPosition(), m_Personnage.GetVision());
 	int ParcourirCaseVisible = 0;
-	for (int i = 0; i < 120; ++i)
-		cout << endl;
+	system("cls");
 	for (int i = 0; i < m_Lab.GetHauteur(); ++i)
 	{ 
 		for (int j = 0; j < m_Lab.GetLargeur(); ++j)
 		{
-			if (i == CaseVisible[ParcourirCaseVisible].first.x && j == CaseVisible[ParcourirCaseVisible].first.y)
+			if (i == CaseVisible[ParcourirCaseVisible].first.y && j == CaseVisible[ParcourirCaseVisible].first.x)
 			{
-				if (m_Personnage.GetPosition().x == i && m_Personnage.GetPosition().y)
-					std::cout << m_Personnage.m_avatar;
+				if (m_Personnage.GetPosition().x == j && m_Personnage.GetPosition().y == i)
+					cout << m_Personnage.m_avatar;
 				else
-					std::cout << CaseVisible[ParcourirCaseVisible].second;
+					cout << CaseVisible[ParcourirCaseVisible].second;
 				if (ParcourirCaseVisible + 1 < (int)CaseVisible.size())
 					++ParcourirCaseVisible;
 			}
 			else
-				std::cout << ' ';
+				cout << ' ';
 		}
 		cout << endl;
 	}
 }
 
 
-void CPartie::Executer()
+void CPartie::Executer(const Commande &c)
 {
-	//todo////////////////
-}
-bool CPartie::Fini() const
-{
-	//todo////////////////
+	if (c == Menu::HAUT)
+	{
+		//valider jouer.destin est valide
+		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::HAUT)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		{
+			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::HAUT));
+		}
+	}
+	if (c == Menu::BAS)
+	{
+		//valider jouer.destin est valide
+		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::BAS)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		{
+			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::BAS));
+		}
+	}
+	if (c == Menu::DROITE)
+	{
+		//valider jouer.destin est valide
+		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::DROITE)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		{
+			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::DROITE));
+		}
+	}
+	if (c == Menu::GAUCHE)
+	{
+		//valider jouer.destin est valide
+		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::GAUCHE)) == CLabyrinthe::disponibiliteCase::LIBRE)
+		{
+			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::GAUCHE));
+		}
+	}
+
 }
 
-//
-//int CPartie::LireTouche()
-//{
-//	// -32767 == touche appuyé ! 
-//	while (true)
-//	{
-//		short VirtualKey;
-//		VirtualKey = GetAsyncKeyState(VK_UP);
-//		if (VirtualKey == -32767) return VK_UP;
-//		VirtualKey = GetAsyncKeyState(VK_RIGHT);
-//		if (VirtualKey == -32767) return VK_RIGHT;
-//		VirtualKey = GetAsyncKeyState(VK_DOWN);
-//		if (VirtualKey == -32767) return VK_DOWN;
-//		VirtualKey = GetAsyncKeyState(VK_LEFT);
-//		if (VirtualKey == -32767) return VK_LEFT;
-//		VirtualKey = GetAsyncKeyState(VK_ESCAPE);
-//		if (VirtualKey == -32767) return VK_ESCAPE;
-//		Sleep(10);
-//	}
-//}
+
+bool CPartie::Fini() const
+{	
+	return !m_Personnage.EstVivant() || m_Personnage.GetPosition() == m_Sortie;
+}
+

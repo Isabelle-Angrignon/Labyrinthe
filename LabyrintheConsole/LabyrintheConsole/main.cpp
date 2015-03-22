@@ -1,18 +1,29 @@
 #include <iostream>
 #include <string>
 #include "Labyrinthe.h"
+#include "Partie.h"
+#include "Menu.h"
 
 using namespace std;
 
 int main()
 {
-	CLabyrinthe monLaby("Labyrinthe.csv");
+	
 
-	const CLabyrinthe::disponibiliteCase *grille = monLaby.GetGrille();
-	if (grille)
-		monLaby.afficher();
-	else
-		cout << "pas recupere la grille" << endl;
+	CPartie MonJeu("Labyrinthe.csv");
+	MonJeu.AfficherEtat();
+	Commande c;
+
+	while (!MonJeu.Fini() && (c = Menu::LireCommande(), c != Menu::QUITTER))
+	{
+		MonJeu.Executer(c);
+		MonJeu.AfficherEtat();
+	}
+
+
+
+
+	
 
 	return 0;
 }
