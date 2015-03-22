@@ -32,7 +32,7 @@ void CPersonnage::Bouger(int virtualKey)
 
 void CPersonnage::EssayerDeplacement(int NouvellePosX, int NouvellePosY)
 {
-	if (m_labyrinthe->LireCase(NouvellePosX, NouvellePosY) != CLabyrinthe::disponibiliteCase::MUR)
+	if (m_labyrinthe->LireCase(NouvellePosX, NouvellePosY) != CLabyrinthe::caractereAafficher::MUR)
 	{
 		m_position.x = NouvellePosX;
 		m_position.y = NouvellePosY;

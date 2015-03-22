@@ -183,13 +183,12 @@ bool CLabyrinthe::enleverItemCase(Pos caseAVider)
 
 CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(int x, int y) const
 {
-	//todo gestion erreur
 	return m_grille[y][x];
 }
 
 CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(Pos p) const
-{	
-	return LireCase(p.y,p.x);
+{
+	return m_grille[p.y][p.x];
 }
 
 std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCasesVisibles(Pos posJoueur, int radiusVue) const

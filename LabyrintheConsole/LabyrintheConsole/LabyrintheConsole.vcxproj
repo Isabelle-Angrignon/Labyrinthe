@@ -80,16 +80,9 @@
   <ItemGroup>
     <ClCompile Include="Labyrinthe.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Partie.cpp" />
-    <ClCompile Include="Personnage.cpp" />
-    <ClCompile Include="Pos.cpp" />
-    <ClCompile Include="Source.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Labyrinthe.h" />
-    <ClInclude Include="Partie.h" />
-    <ClInclude Include="Personnage.h" />
-    <ClInclude Include="Pos.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -3,7 +3,6 @@
 #include <vector>
 #include <utility>
 #include <sstream>
-#include "Pos.h"
 
 
 // hors contexte, utilitaire
@@ -12,21 +11,32 @@ std::vector<std::string> split(const std::string &s, char delim);
 /// fin hors contexte
 
 
+struct Pos
+{
+	int x, y;	
+	Pos() throw() : x{}, y{} { void; }
+	Pos(const int _x, const int _y) throw() : x{ _x }, y{ _y } { void; }
+	bool operator==(const Pos &p) const throw()
+	{
+		return x == p.x && y == p.y;
+	}
+	bool operator!=(const Pos &p) const throw()
+	{
+		return !(*this == p);
+	}
 
+};
 
 class CLabyrinthe
 {	
 public:
 
-	
+	//static enum caractereAafficher{ LIBRE = '█', MUR = ' ', ENTRE = '▲', SORTIE = '§' };  //va dans affichage
 	static enum disponibiliteCase { MUR = 0,  LIBRE, ENTREE, SORTIE, ITEM};  
 	static const int LARGEURMAX = 80;      //Maximum affichable en console
 	static const int HAUTEURMAX = LARGEURMAX; //garder un format carré
 
 private:
-	//////static enum caractereAafficher{ LIBRE = '█', MUR = ' ', ENTRE = '▲', SORTIE = '§' };  //va dans affichage
-
-
 	//Attributs
 	//Énum a adapter selon le format du fichier lu
 	static enum  caractereLu{ MUR_F = 'W', LIBRE_F = 'v',  ENTREE_F = 'd', SORTIE_F = 's' };
@@ -62,7 +72,7 @@ public:
 	Pos GetFin() const { return m_fin; }		// position de la sorti du labyrinthe
 	std::vector<Pos> GetCasesLibres() const;	// vecteur de positions de toutes les cases vides.
 	
-	bool placerItemCase(Pos caseAEmplir);		// inscrit un item dans la grille, retourne vrai si c'est fait
+	bool placerItemCase(Pos caseAEmplir);		// inscrit un item dans la grille, retourne vrai si possible
 	bool enleverItemCase(Pos caseAVider);		// libère une case de la grille, retourne faux s'il n'y avais pas d'item à retirer
 	disponibiliteCase LireCase(int x, int y) const; //retourne le statut de la case selon l'énum.
 	disponibiliteCase LireCase(Pos p) const;		//retourne le statut de la case selon l'énum version Pos.
