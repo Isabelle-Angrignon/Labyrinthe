@@ -10,7 +10,7 @@
 class CPartie
 {
 public:
-	CPartie(string filePath);
+	CPartie(std::string filePath);
 	void JouerUnePartie();
 	~CPartie();
 private:
