@@ -47,3 +47,5 @@ LabyrintheConsole/LabyrintheConsole.opensdf
 LabyrintheConsole/LabyrintheConsole.sdf
 LabyrintheConsole/LabyrintheConsole.sdf
 LabyrintheConsole/LabyrintheConsole.sdf
+*.vcxproj
+*.filters
