@@ -26,13 +26,13 @@ void CPersonnage::Bouger(int virtualKey)
 		EssayerDeplacement(m_position.x , m_position.y -1);
 		break;
 	default:
-		break;
+		break; 
 	}
 }
 
 void CPersonnage::EssayerDeplacement(int NouvellePosX, int NouvellePosY)
 {
-	if (m_labyrinthe->LireCase(NouvellePosX, NouvellePosY) != CLabyrinthe::caractereAafficher::MUR)
+	if (m_labyrinthe->LireCase(NouvellePosX, NouvellePosY) != CLabyrinthe::disponibiliteCase::MUR)
 	{
 		m_position.x = NouvellePosX;
 		m_position.y = NouvellePosY;

@@ -9,7 +9,7 @@
 //	bool ToucheAppuyer = false;
 //	while (!ToucheAppuyer)
 //	{
-//		short VirtualKey;
+//		short VirtualKey; 
 //		VirtualKey = GetAsyncKeyState(VK_UP);
 //		if (VirtualKey == -32767) return VK_UP;
 //		VirtualKey = GetAsyncKeyState(VK_RIGHT);

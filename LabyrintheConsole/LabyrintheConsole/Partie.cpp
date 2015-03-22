@@ -1,7 +1,7 @@
 #include "Partie.h"
+#include "Pos.h"
 
-
-CPartie::CPartie(string filePath) :m_Lab(filePath)
+CPartie::CPartie(std::string filePath) :m_Lab(filePath)
 {
 	m_Personnage = new CPersonnage(m_Lab.GetDebut(),&m_Lab);
 }
@@ -13,12 +13,13 @@ void CPartie::JouerUnePartie()
 
 void CPartie::afficher()
 {
-	vector<pair<Pos, CLabyrinthe::caractereAafficher>> CaseVisible = m_Lab.LireCasesVisibles(m_Personnage->GetPosition(), m_Personnage->GetVision());
+	using namespace std;
+	vector<pair<Pos, CLabyrinthe::disponibiliteCase>> CaseVisible = m_Lab.LireCasesVisibles(m_Personnage->GetPosition(), m_Personnage->GetVision());
 	int ParcourirCaseVisible = 0;
 	for (int i = 0; i < 120; ++i)
 		cout << endl;
 	for (int i = 0; i < m_Lab.GetHauteur(); ++i)
-	{
+	{ 
 		for (int j = 0; j < m_Lab.GetLargeur(); ++j)
 		{
 			if (i == CaseVisible[ParcourirCaseVisible].first.x && j == CaseVisible[ParcourirCaseVisible].first.y)
