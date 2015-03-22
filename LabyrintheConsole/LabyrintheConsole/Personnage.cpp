@@ -7,8 +7,6 @@ CPersonnage::CPersonnage(Pos depart)
 		
 }
 
-
-
 void CPersonnage::SetPosition(Pos p)
 {
 	m_position = p;
@@ -20,23 +18,23 @@ void CPersonnage::SetPosition(const int x, const int y)
 }
 
 
-Pos CPersonnage::Destination(controle direction)
+Pos CPersonnage::Destination(direction d)
 {	
-	Pos destination(CPersonnage::GetPosition());
+	Pos destination(GetPosition());
 
-	switch (direction)
+	switch (d)
 	{
 	case HAUT:
-		SetPosition(m_position.x -1, m_position.y);
+		SetPosition(m_position.x, m_position.y - 1);
 		break;
 	case DROITE:
-		SetPosition(m_position.x, m_position.y + 1);
+		SetPosition(m_position.x + 1, m_position.y );
 		break;
 	case BAS:
-		SetPosition(m_position.x + 1, m_position.y);
+		SetPosition(m_position.x, m_position.y + 1);
 		break;
 	case GAUCHE:
-		SetPosition(m_position.x, m_position.y - 1);
+		SetPosition(m_position.x - 1, m_position.y);
 		break;
 	default:
 		break; 
