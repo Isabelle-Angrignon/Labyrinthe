@@ -44,13 +44,10 @@ Temporary Items
 
 LabyrintheConsole/LabyrintheConsole.sdf
 LabyrintheConsole/LabyrintheConsole.opensdf
-LabyrintheConsole/LabyrintheConsole.sdf
-LabyrintheConsole/LabyrintheConsole.sdf
-LabyrintheConsole/LabyrintheConsole.sdf
 *.vcxproj
 *.filters
-LabyrintheConsole/LabyrintheConsole.sdf
 LabyrintheConsole/LabyrintheConsole.v12.suo
-LabyrintheConsole/LabyrintheConsole.sdf
+
 *.tlog
 *.log
+*.sdf
