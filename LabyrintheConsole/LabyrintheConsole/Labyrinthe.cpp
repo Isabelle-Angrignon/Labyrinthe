@@ -82,10 +82,10 @@ bool CLabyrinthe::chargerLabyrinthe(std::string fichier)/// retourne faux ou thr
 			++noColonne;
 		}
 		if (GetLargeur() == 0)
-			SetLargeur(noColonne);
+			SetLargeur(noColonne+1);
 	}
 	if (GetHauteur() == 0)
-		SetHauteur(noLigne);
+		SetHauteur(noLigne+1);
 
 	myfile.close();
 	ConvertirSympoles(grilleTemp);
@@ -93,17 +93,17 @@ bool CLabyrinthe::chargerLabyrinthe(std::string fichier)/// retourne faux ou thr
 	return GetLargeur() && GetHauteur() && chargeReussie;
 }
 
-void CLabyrinthe::chargerCase(caractereLu grille[LARGEURMAX][HAUTEURMAX], int noLigne, int noColonne)
+void CLabyrinthe::chargerCase(caractereLu grille[HAUTEURMAX][LARGEURMAX], int noLigne, int noColonne)
 {	
 	//remplir le vecteur de cases libres
 	if (grille[noLigne][noColonne] == LIBRE_F)
-		m_casesLibres.push_back(Pos(noLigne, noColonne));
+		m_casesLibres.push_back(Pos(noColonne, noLigne));
 	//setter debut
 	if (grille[noLigne][noColonne] == ENTREE_F)
-		SetDebut(Pos(noLigne, noColonne));
+		SetDebut(Pos(noColonne, noLigne));
 	//setter fin
 	if (grille[noLigne][noColonne] == SORTIE_F)
-		SetFin(Pos(noLigne, noColonne));
+		SetFin(Pos(noColonne, noLigne));
 }
 
 void CLabyrinthe::ConvertirSympoles(caractereLu grille[HAUTEURMAX][LARGEURMAX])
@@ -183,8 +183,10 @@ bool CLabyrinthe::enleverItemCase(Pos caseAVider)
 
 CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(int x, int y) const
 {
-	//todo gestion erreur
-	return m_grille[y][x];
+	CLabyrinthe::disponibiliteCase dispo = MUR;
+	if (x >= 0 && x < GetLargeur() && y >= 0 && y < GetHauteur() )
+		dispo = m_grille[y][x];
+	return dispo;
 }
 
 CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(Pos p) const
@@ -211,8 +213,7 @@ std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCas
 			uneCase = std::make_pair(Pos(j, i), m_grille[i][j]);
 			cases.push_back(uneCase);
 		}		
-	}
-		
+	}		
 	return cases;
 }
 

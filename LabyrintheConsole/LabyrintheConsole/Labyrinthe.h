@@ -42,7 +42,7 @@ private:
 	//Méthodes
 	void initialiserGrille();// met tous les char de la grille à "vide"
 	bool chargerLabyrinthe(std::string fichier);
-	void chargerCase(caractereLu grille[LARGEURMAX][HAUTEURMAX], int noLigne, int noColonne);
+	void chargerCase(caractereLu grille[HAUTEURMAX][LARGEURMAX], int noLigne, int noColonne);
 	void ConvertirSympoles(caractereLu grille[HAUTEURMAX][LARGEURMAX]);	
 	disponibiliteCase ConvertirSympoleADisponible(caractereLu symbole);
 	

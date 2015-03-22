@@ -33,7 +33,14 @@ void CPartie::AfficherEtat() const
 				cout << ' ';
 		}
 		cout << endl;
+		
 	}
+	cout << endl;
+	if (Fini())
+			if (m_Personnage.EstVivant())
+				cout << "Gagne !";
+			else
+				cout << "Perdu !";
 }
 
 
@@ -41,45 +48,48 @@ void CPartie::Executer(const Commande &c)
 {
 	if (c == Menu::HAUT)
 	{
-		//valider jouer.destin est valide
 		CLabyrinthe::disponibiliteCase dispo = m_Lab.LireCase(m_Personnage.Destination(CPersonnage::HAUT));
 		if (dispo != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::HAUT));
+			m_Personnage.AvancerUnPas();
 		}
 	}
 	if (c == Menu::BAS)
 	{
-		//valider jouer.destin est valide
 		CLabyrinthe::disponibiliteCase dispo = m_Lab.LireCase(m_Personnage.Destination(CPersonnage::BAS));
 		if (dispo != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::BAS));
+			m_Personnage.AvancerUnPas();
 		}
 	}
 	if (c == Menu::DROITE)
 	{
-		//valider jouer.destin est valide
 		CLabyrinthe::disponibiliteCase dispo = m_Lab.LireCase(m_Personnage.Destination(CPersonnage::DROITE));
 		if (dispo != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::DROITE));
+			m_Personnage.AvancerUnPas();
 		}
 	}
-	if (c == Menu::GAUCHE)
-	{
-		//valider jouer.destin est valide
+	if (c == Menu::GAUCHE)	{
+		
 		if (m_Lab.LireCase(m_Personnage.Destination(CPersonnage::GAUCHE)) != CLabyrinthe::disponibiliteCase::MUR)
 		{
 			m_Personnage.SetPosition(m_Personnage.Destination(CPersonnage::GAUCHE));
+			m_Personnage.AvancerUnPas();
 		}
 	}
-
 }
 
 
 bool CPartie::Fini() const
 {	
-	return !m_Personnage.EstVivant() || m_Personnage.GetPosition() == m_Sortie;
+	bool vivant = m_Personnage.EstVivant();
+	Pos p = m_Personnage.GetPosition();
+	bool sorti = p == m_Sortie;
+	bool fini = !vivant || sorti;
+  	return fini;
 }
 
