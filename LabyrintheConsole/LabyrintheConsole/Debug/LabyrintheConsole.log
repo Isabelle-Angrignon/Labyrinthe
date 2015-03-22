@@ -1,116 +1,11 @@
-﻿La génération a démarré 22/03/2015 10:57:13.
+﻿La génération a démarré 22/03/2015 12:45:18.
      1>Projet "C:\Users\Simon\Documents\GitHub\Labyrinthe\LabyrintheConsole\LabyrintheConsole\LabyrintheConsole.vcxproj" sur le nœud 2 (Build cible(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Labyrinthe.cpp main.cpp Partie.cpp Personnage.cpp Source.cpp
-         Source.cpp
-         Personnage.cpp
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15): error C2011: 'Pos' : redéfinition du type 'struct'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\pos.h(3) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(43): error C2079: 'CLabyrinthe::m_debut' utilise une struct de 'Pos' non défini
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(43): error C2079: 'CLabyrinthe::m_fin' utilise une struct de 'Pos' non défini
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(51): error C2440: '=' : impossible de convertir de 'Pos' en 'int'
-                 Type de la source ou de la cible incomplet
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(52): error C2440: '=' : impossible de convertir de 'Pos' en 'int'
-                 Type de la source ou de la cible incomplet
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(71): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\pos.h(3) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(72): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\pos.h(3) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.h(9): warning C4566: le caractère représenté par le nom de caractère universel '\u263A' ne peut pas être représenté dans la page de codes actuelle (1252)
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.h(22): error C2079: 'CPersonnage::m_position' utilise une struct de 'Pos' non défini
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.h(16): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\pos.h(3) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(5): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(5): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\pos.h(3) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(6): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(6): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\pos.h(3) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(17): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(17): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(17): error C2660: 'CPersonnage::EssayerDeplacement' : la fonction ne prend pas 1 arguments
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(20): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(20): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(20): error C2660: 'CPersonnage::EssayerDeplacement' : la fonction ne prend pas 1 arguments
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(23): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(23): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(23): error C2660: 'CPersonnage::EssayerDeplacement' : la fonction ne prend pas 1 arguments
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(26): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(26): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(26): error C2660: 'CPersonnage::EssayerDeplacement' : la fonction ne prend pas 1 arguments
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(35): error C3083: 'caractereAafficher' : le symbole situé à gauche de '::' doit être un type
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(37): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-                 le type est 'int'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.cpp(38): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-                 le type est 'int'
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt Labyrinthe.cpp Partie.cpp Personnage.cpp main.cpp
          Partie.cpp
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(17): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(18): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\pos.h(3): error C2011: 'Pos' : redéfinition du type 'struct'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15) : voir la déclaration de 'Pos'
      1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.h(9): warning C4566: le caractère représenté par le nom de caractère universel '\u263A' ne peut pas être représenté dans la page de codes actuelle (1252)
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.h(22): error C2079: 'CPersonnage::m_position' utilise une struct de 'Pos' non défini
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\personnage.h(16): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.h(13): error C2061: erreur de syntaxe : identificateur 'string'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(4): error C2065: 'string' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(4): error C2146: erreur de syntaxe : absence de ')' avant l'identificateur 'filePath'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(4): error C2761: '{ctor}' : redéclaration de la fonction membre non autorisée
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(4): error C2059: erreur de syntaxe : ')'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(4): error C2065: 'filePath' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(5): error C2448: 'm_Lab' : l'initialiseur de style fonction semble être une définition de fonction
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(16): error C2065: 'vector' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(16): error C2065: 'pair' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(16): error C2039: 'caractereAafficher' : n'est pas membre de 'CLabyrinthe'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(31) : voir la déclaration de 'CLabyrinthe'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(16): error C2065: 'caractereAafficher' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(16): error C2065: 'CaseVisible' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(16): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(16): error C2664: 'std::vector<std::pair<Pos,CLabyrinthe::disponibiliteCase>,std::allocator<_Ty>> CLabyrinthe::LireCasesVisibles(Pos,int) const' : impossible de convertir l'argument 1 de 'Pos' en 'Pos'
-                 with
-                 [
-                     _Ty=std::pair<Pos,CLabyrinthe::disponibiliteCase>
-                 ]
-                 Type de la source ou de la cible incomplet
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(19): error C2065: 'cout' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(19): error C2065: 'endl' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(24): error C2065: 'CaseVisible' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(24): error C2228: la partie gauche de '.first' doit avoir un class/struct/union
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(24): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(24): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(26): error C2027: utilisation du type non défini 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15) : voir la déclaration de 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(26): error C2228: la partie gauche de '.x' doit avoir un class/struct/union
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15) : voir la déclaration de 'Pos'
-                 c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(15) : voir la déclaration de 'Pos'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(26): error C2228: la partie gauche de '.y' doit avoir un class/struct/union
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(29): error C2065: 'CaseVisible' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(29): error C2228: la partie gauche de '.second' doit avoir un class/struct/union
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(30): error C2065: 'CaseVisible' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(30): error C2228: la partie gauche de '.size' doit avoir un class/struct/union
-                 le type est 'unknown-type'
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(36): error C2065: 'cout' : identificateur non déclaré
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(36): error C2065: 'endl' : identificateur non déclaré
-         main.cpp
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(17): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(18): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
+     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\partie.cpp(31): warning C4018: '<' : incompatibilité signed/unsigned
          Labyrinthe.cpp
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(17): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.h(18): warning C4091: '' : ignoré à gauche de 'void' quand aucune variable n'est déclarée
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.cpp(157): warning C4553: '==' : opérateur sans effet ; souhaitiez-vous '=' ?
-     1>c:\users\simon\documents\github\labyrinthe\labyrintheconsole\labyrintheconsole\labyrinthe.cpp(177): warning C4553: '==' : opérateur sans effet ; souhaitiez-vous '=' ?
      1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\algorithm(3071): error C2893: La spécialisation du modèle de fonction 'unknown-type std::less<void>::operator ()(_Ty1 &&,_Ty2 &&) const' a échoué
                  Avec les arguments template suivants :
                  '_Ty1=Pos &'
@@ -141,8 +36,11 @@
                  ]
      1>c:\program files (x86)\microsoft visual studio 12.0\vc\include\algorithm(3071): fatal error C1903: impossible de récupérer à partir des erreurs précédentes ; arrêt de la compilation
          Génération de code en cours...
+         Ignoré... (aucune modification pertinente détectée)
+         main.cpp
+         Personnage.cpp
      1>Génération du projet "C:\Users\Simon\Documents\GitHub\Labyrinthe\LabyrintheConsole\LabyrintheConsole\LabyrintheConsole.vcxproj" terminée (Build cible(s)) -- ÉCHEC.
 
 ÉCHEC de la build.
 
-Temps écoulé 00:00:05.93
+Temps écoulé 00:00:01.53
