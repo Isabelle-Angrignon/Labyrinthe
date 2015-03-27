@@ -206,9 +206,9 @@ std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCas
 
 	std::pair<Pos, CLabyrinthe::disponibiliteCase> uneCase;
 
-	for (int i = dV; i < fV; ++i)
+	for (int i = dV; i <= fV; ++i)
 	{
-		for (int j = dH; j < fH; ++j)
+		for (int j = dH; j <= fH; ++j)
 		{
 			uneCase = std::make_pair(Pos(j, i), m_grille[i][j]);
 			cases.push_back(uneCase);
