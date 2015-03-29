@@ -41,3 +41,20 @@ Pos CPersonnage::Destination(direction d)
 	}
 	return destination;
 }
+
+
+void CPersonnage::RamasserItem(std::pair<int, CItem::TypeBonus> i)
+{
+	switch (i.second)
+	{
+		case CItem::PAS:
+			m_nbrDePas += i.first;
+			break;
+		case CItem::VISION:
+			m_vision += i.first;
+			break;
+		default:
+			break;
+	}
+
+}

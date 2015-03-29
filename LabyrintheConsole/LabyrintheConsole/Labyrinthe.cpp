@@ -3,10 +3,13 @@
 #include <iostream>
 #include <fstream>
 #include <regex>
+#include <algorithm>
+
 
 
 
 // hors contexte, utilitaire
+
 std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems)
 {
 	std::stringstream ss(s);
@@ -57,7 +60,7 @@ void CLabyrinthe::initialiserGrille()
 {
 	for (int i = 0; i < HAUTEURMAX; ++i)
 		for (int j = 0; j < LARGEURMAX; ++j)
-			m_grille[i][j] = disponibiliteCase::MUR;
+			m_grille[i][j] = CLabyrinthe::MUR;
 }
 bool CLabyrinthe::chargerLabyrinthe(std::string fichier)/// retourne faux ou throw exception si fichier marde...
 {
@@ -102,8 +105,8 @@ void CLabyrinthe::chargerCase(caractereLu grille[HAUTEURMAX][LARGEURMAX], int no
 	if (grille[noLigne][noColonne] == ENTREE_F)
 		SetDebut(Pos(noColonne, noLigne));
 	//setter fin
-	if (grille[noLigne][noColonne] == SORTIE_F)
-		SetFin(Pos(noColonne, noLigne));
+	/*if (grille[noLigne][noColonne] == SORTIE_F)
+		SetFin(Pos(noColonne, noLigne));*/
 }
 
 void CLabyrinthe::ConvertirSympoles(caractereLu grille[HAUTEURMAX][LARGEURMAX])
@@ -113,28 +116,28 @@ void CLabyrinthe::ConvertirSympoles(caractereLu grille[HAUTEURMAX][LARGEURMAX])
 			m_grille[i][j] = ConvertirSympoleADisponible(grille[i][j]);
 }
 
-CLabyrinthe::disponibiliteCase CLabyrinthe::ConvertirSympoleADisponible(caractereLu symbole)
+CLabyrinthe::contenuCase CLabyrinthe::ConvertirSympoleADisponible(caractereLu symbole)
 {
-	disponibiliteCase dispo;
+
 	switch (symbole)
 	{
 	case MUR_F:
-		dispo = disponibiliteCase::MUR;
+		return CLabyrinthe::MUR;
 		break;
 	case LIBRE_F:
-		dispo = disponibiliteCase::LIBRE;
+		return CLabyrinthe::LIBRE;
 		break;
 	case ENTREE_F:
-		dispo = disponibiliteCase::ENTREE;
+		return  CLabyrinthe::ENTREE;
 		break;
 	case SORTIE_F:
-		dispo = disponibiliteCase::SORTIE;
+		return CLabyrinthe::SORTIE;
 		break;
 	default:
-		dispo = disponibiliteCase::MUR;
+		return CLabyrinthe::MUR;
 		break;
 	}
-	return dispo;
+	return CLabyrinthe::MUR;
 }
 
 
@@ -142,6 +145,7 @@ CLabyrinthe::CLabyrinthe(std::string fichier) :m_hauteur{ 0 }, m_largeur{ 0 }
 {
 	initialiserGrille();
 	chargerLabyrinthe(fichier);
+	placerItems();
 }
 
 std::vector<Pos> CLabyrinthe::GetCasesLibres() const
@@ -149,17 +153,40 @@ std::vector<Pos> CLabyrinthe::GetCasesLibres() const
 	return m_casesLibres;
 }
 
-bool CLabyrinthe::placerItemCase(Pos caseAEmplir)
+void CLabyrinthe::placerItems()
+{
+	//trouver liste dispo
+	std::vector<Pos> dispo = GetCasesLibres();
+	//shuffle dispo
+	std::random_shuffle(begin(dispo), end(dispo));
+	//push dans item
+	Pos p = dispo[dispo.size() - 1];
+	for (int i = 0; i < 3; ++i)
+	{
+		m_grille[p.y][p.x].setcontenueCase(new CItem(dispo[dispo.size() - 1], 'B', CItem::PAS, 5));
+		dispo.pop_back();
+		p = dispo[dispo.size() - 1];
+	}
+	for (int i = 0; i < 3; ++i)
+	{
+		m_grille[p.y][p.x].setcontenueCase(new CItem(dispo[dispo.size() - 1], 'V', CItem::VISION, 2));	
+		dispo.pop_back();
+		p = dispo[dispo.size() - 1];
+	}	
+
+}
+
+bool CLabyrinthe::placerItemCase(Pos caseAOccuper)
 {
 	bool libre = false;
-	if (m_grille[caseAEmplir.y][caseAEmplir.x] == LIBRE)
+	if (m_grille[caseAOccuper.y][caseAOccuper.x] == LIBRE)
 	{
-		m_grille[caseAEmplir.y][caseAEmplir.x] = ITEM;		
+		m_grille[caseAOccuper.y][caseAOccuper.x] = ITEM;
 		
 		int p = 0;
 		for (auto i = begin(m_casesLibres); i < end(m_casesLibres); ++i, ++p)
 		{
-			if (m_casesLibres[p] == caseAEmplir)
+			if (m_casesLibres[p] == caseAOccuper)
 			{ 
 				m_casesLibres.erase(i);
 				libre = true;
@@ -181,22 +208,22 @@ bool CLabyrinthe::enleverItemCase(Pos caseAVider)
 	return libre; 	
 }
 
-CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(int x, int y) const
+CLabyrinthe::contenuCase CLabyrinthe::LireCase(int x, int y) const
 {
-	CLabyrinthe::disponibiliteCase dispo = MUR;
+	CLabyrinthe::contenuCase dispo = MUR;
 	if (x >= 0 && x < GetLargeur() && y >= 0 && y < GetHauteur() )
 		dispo = m_grille[y][x];
 	return dispo;
 }
 
-CLabyrinthe::disponibiliteCase CLabyrinthe::LireCase(Pos p) const
+CLabyrinthe::contenuCase CLabyrinthe::LireCase(Pos p) const
 {	
 	return LireCase(p.x, p.y);
 }
 
-std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCasesVisibles(Pos posJoueur, int radiusVue) const
+CLabyrinthe::VECTEUR_INFOCASE CLabyrinthe::LireCasesVisibles(Pos posJoueur, int radiusVue) const
 {
-	std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> cases;
+	VECTEUR_INFOCASE cases;
 
 	//Définir les bornes de la vision
 	int dV = posJoueur.y - radiusVue > 0 ? posJoueur.y - radiusVue : 0;
@@ -204,7 +231,7 @@ std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCas
 	int dH = posJoueur.x - radiusVue > 0 ? posJoueur.x - radiusVue : 0;
 	int fH = posJoueur.x + radiusVue < GetLargeur() ? posJoueur.x + radiusVue : GetLargeur() - 1;
 
-	std::pair<Pos, CLabyrinthe::disponibiliteCase> uneCase;
+	INFOCASE uneCase;
 
 	for (int i = dV; i <= fV; ++i)
 	{
@@ -217,7 +244,38 @@ std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCas
 	return cases;
 }
 
+// CLASSE contenuCase
 
+//MUR, LIBRE, ENTREE, SORTIE, ITEM
+
+const CLabyrinthe::contenuCase
+CLabyrinthe::MUR = CLabyrinthe::contenuCase(CLabyrinthe::contenuCase::MUR_A),
+CLabyrinthe::LIBRE = CLabyrinthe::contenuCase(CLabyrinthe::contenuCase::LIBRE_A),
+CLabyrinthe::ENTREE = CLabyrinthe::contenuCase(CLabyrinthe::contenuCase::ENTRE_A),
+CLabyrinthe::SORTIE = CLabyrinthe::contenuCase(CLabyrinthe::contenuCase::SORTIE_A),
+CLabyrinthe::ITEM = CLabyrinthe::contenuCase(CLabyrinthe::contenuCase::ITEM_A);
+
+CLabyrinthe::contenuCase::contenuCase(const contenuCase& c)
+{
+	m_carac = c.getCarac(); 
+	if (c.GetItem())
+		m_pItem = new CItem(*c.GetItem());
+	else
+		m_pItem = nullptr;
+}
+
+void CLabyrinthe::contenuCase::Swap(contenuCase& c)
+{
+	using std::swap;
+	swap(m_carac, c.m_carac);
+	swap(m_pItem, c.m_pItem);
+}
+
+CLabyrinthe::contenuCase& CLabyrinthe::contenuCase::operator=(const contenuCase& c)
+{
+	contenuCase{ c }.Swap(*this);
+	return *this;	
+}
 //Pour débogage seulement
 //void CLabyrinthe::afficher() const
 //{
