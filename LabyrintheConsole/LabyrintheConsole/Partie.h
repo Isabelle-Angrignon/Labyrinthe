@@ -16,8 +16,7 @@ class Commande;
 class CPartie
 { 
 	
-public:
-	
+public:	
 
 	CPartie(std::string filePath);
 //	void JouerUnePartie();
@@ -33,8 +32,12 @@ private:
 	CLabyrinthe m_Lab;
 	CPersonnage m_Personnage;
 	const Pos m_Sortie;
-	
+	const std::string MESSAGEGAGNANT = "Bravo! Vous avez trouve la sortie !";
+	const std::string MESSAGEPERDANT = "Trop long! Vous avez perdu !";
+
 	std::vector<CItem> m_listeBouffe;
 	std::vector<CItem> m_listeTorches;
+
+	void GereFin() const;
 };
 

@@ -218,17 +218,17 @@ std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> CLabyrinthe::LireCas
 }
 
 
-
-void CLabyrinthe::afficher() const
-{
-	using namespace std;
-	for (int i = 0; i < GetHauteur(); ++i)
-	{
-		for (int j = 0; j < GetLargeur(); ++j)
-		{
-			cout << m_grille[i][j] << ' ';
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
+//Pour débogage seulement
+//void CLabyrinthe::afficher() const
+//{
+//	using namespace std;
+//	for (int i = 0; i < GetHauteur(); ++i)
+//	{
+//		for (int j = 0; j < GetLargeur(); ++j)
+//		{
+//			cout << m_grille[i][j] << ' ';
+//		}
+//		cout << endl;
+//	}
+//	cout << endl;
+//}

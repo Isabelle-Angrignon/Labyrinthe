@@ -4,16 +4,19 @@
 #include "Menu.h"
 #include "Commande.h"
 
+
+typedef std::vector<std::pair<Pos, CLabyrinthe::disponibiliteCase>> INFOCASE;
+
 CPartie::CPartie(std::string filePath) 
 	: m_Lab(filePath), m_Personnage(m_Lab.GetDebut()), m_Sortie(m_Lab.GetFin())
 {
-	//std::cout << m_Personnage.GetPosition().x << " " << m_Personnage.GetPosition().y << std::endl;
+	
 }
 
 void CPartie::AfficherEtat() const
 {
 	using namespace std;
-	vector<pair<Pos, CLabyrinthe::disponibiliteCase>> CaseVisible = m_Lab.LireCasesVisibles(m_Personnage.GetPosition(), m_Personnage.GetVision());
+	/*vector<pair<Pos, CLabyrinthe::disponibiliteCase>>*/INFOCASE CaseVisible = m_Lab.LireCasesVisibles(m_Personnage.GetPosition(), m_Personnage.GetVision());
 	int ParcourirCaseVisible = 0;
 	system("cls");
 	for (int i = 0; i < m_Lab.GetHauteur(); ++i)
@@ -30,19 +33,30 @@ void CPartie::AfficherEtat() const
 					++ParcourirCaseVisible;
 			}
 			else
-				cout << ' ';
+				cout << ' ';// pour plus de lisibilité
 		}
 		cout << endl;
 		
 	}
 	cout << endl;
 	if (Fini())
-			if (m_Personnage.EstVivant())
-				cout << "Gagne !";
-			else
-				cout << "Perdu !";
+		GereFin();
+
 }
 
+void CPartie::GereFin() const
+{
+	if (m_Personnage.EstVivant())
+	{
+		std::cout << MESSAGEGAGNANT;
+		system("pause");
+	}
+	else
+	{
+		std::cout << MESSAGEPERDANT;
+		system("pause");
+	}
+}
 
 void CPartie::Executer(const Commande &c)
 {

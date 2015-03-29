@@ -70,6 +70,6 @@ public:
 	const disponibiliteCase* GetGrille() const { return *m_grille; }   // tab 2d contenant les disponibilité des cases du labyrinthe
 	
 	// pour debogage seulement
-	void afficher() const;
+	//void afficher() const;
 };
 
