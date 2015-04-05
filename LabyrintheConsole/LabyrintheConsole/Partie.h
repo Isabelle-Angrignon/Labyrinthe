@@ -19,7 +19,6 @@ class CPartie
 public:	
 
 	CPartie(std::string filePath);
-//	void JouerUnePartie();
 	void AfficherEtat() const;
 	void Executer(const Commande &c);
 	bool Fini() const;
@@ -31,7 +30,7 @@ private:
 
 	CLabyrinthe m_Lab;
 	CPersonnage m_Personnage;
-	void TraiterDirection(CPersonnage::direction d, CPersonnage & p);
+	void TraiterDirection(CPersonnage::e_Direction d, CPersonnage & p);
 	const std::string MESSAGEGAGNANT = "Bravo! Vous avez trouve la sortie !";
 	const std::string MESSAGEPERDANT = "Trop long! Vous avez perdu !";
 	

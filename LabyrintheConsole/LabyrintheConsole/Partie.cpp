@@ -68,33 +68,32 @@ void CPartie::GereFin() const
 
 void CPartie::Executer(const Commande &c)
 {
-	if (c == Menu::HAUT)
+	if (c == CMenu::HAUT)
 		TraiterDirection(CPersonnage::HAUT, m_Personnage);
 	
-	else if (c == Menu::BAS)
+	else if (c == CMenu::BAS)
 		TraiterDirection(CPersonnage::BAS, m_Personnage);
 	
-	else if (c == Menu::DROITE)
+	else if (c == CMenu::DROITE)
 		TraiterDirection(CPersonnage::DROITE, m_Personnage);
 	
-	else if (c == Menu::GAUCHE)	
-		TraiterDirection(CPersonnage::GAUCHE, m_Personnage);
-	
+	else if (c == CMenu::GAUCHE)	
+		TraiterDirection(CPersonnage::GAUCHE, m_Personnage);	
 }
 
 
 bool CPartie::Fini() const
 {	
 	bool vivant = m_Personnage.EstVivant();
-	Pos p = m_Personnage.GetPosition();
+	CPos p = m_Personnage.GetPosition();
 	bool sorti = m_Lab.LireCase(p) == CLabyrinthe::SORTIE;
 	bool fini = !vivant || sorti;
   	return fini;
 }
 
-void CPartie::TraiterDirection(CPersonnage::direction d, CPersonnage & p)
+void CPartie::TraiterDirection(CPersonnage::e_Direction d, CPersonnage & p)
 {
-	CLabyrinthe::contenuCase dispo = m_Lab.LireCase(p.Destination(d));
+	CLabyrinthe::CContenuCase dispo = m_Lab.LireCase(p.Destination(d));
 	if (dispo != CLabyrinthe::MUR)
 	{
 		p.SetPosition(p.Destination(d));
@@ -102,7 +101,7 @@ void CPartie::TraiterDirection(CPersonnage::direction d, CPersonnage & p)
 		if (dispo == CLabyrinthe::ITEM)
 		{
 			p.RamasserItem(dispo.GetItem()->Consommer());
-			m_Lab.enleverItemCase(dispo.GetItem()->GetPosition());
+			m_Lab.EnleverItemCase(dispo.GetItem()->GetPosition());
 		}
 	}
 }

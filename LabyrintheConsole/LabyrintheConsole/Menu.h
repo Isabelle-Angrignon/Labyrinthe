@@ -2,7 +2,8 @@
 #include <Windows.h>
 #include "Commande.h"
 #include <cmath>
-class Menu
+
+class CMenu
 {
 public:
 	static const Commande HAUT, GAUCHE, DROITE, BAS, QUITTER;

@@ -7,56 +7,56 @@
 
 
 // hors contexte, utilitaire
-std::vector<std::string> &split(const std::string &s, char delim, std::vector<std::string> &elems);
-std::vector<std::string> split(const std::string &s, char delim);
+std::vector<std::string> &Split(const std::string &s, char delim, std::vector<std::string> &elems);
+std::vector<std::string> Split(const std::string &s, char delim);
 /// fin hors contexte
 
 
 class CLabyrinthe
 {	 
 public:	
-	class contenuCase;
+	class CContenuCase;
 
-	typedef std::vector<std::pair<Pos, CLabyrinthe::contenuCase>> VECTEUR_INFOCASE;
-	typedef std::pair<Pos, CLabyrinthe::contenuCase> INFOCASE;
+	typedef std::vector<std::pair<CPos, CLabyrinthe::CContenuCase>> VECTEUR_INFOCASE;
+	typedef std::pair<CPos, CLabyrinthe::CContenuCase> INFOCASE;
 
 	static const int LARGEURMAX = 80;      //Maximum affichable en console
 	static const int HAUTEURMAX = LARGEURMAX; //garder un format carré
 	
-	class contenuCase
+	class CContenuCase
 	{
 		char m_carac;
 		CItem * m_pItem;
 	public:
-		static enum caractereAafficher{ MUR_A = '\#', LIBRE_A = '.', ENTRE_A = 'A', SORTIE_A = 'S',ITEM_A = 'I' };
-		contenuCase(caractereAafficher c) :m_carac(c){}
-		contenuCase(CItem * pItem):m_pItem(pItem),m_carac(ITEM_A) {}
-		void setcontenueCase(CItem *pItem){ m_carac = ITEM_A; m_pItem = pItem;}
-		friend std::ostream& operator<<(std::ostream &os, const contenuCase& c){ return os << c.getCarac(); }
+		static enum e_CaractereAAfficher{ MUR_A = '#', LIBRE_A = '.', ENTRE_A = 'A', SORTIE_A = 'S',ITEM_A = 'I' };
+		CContenuCase(e_CaractereAAfficher c) :m_carac(c){}
+		CContenuCase(CItem * pItem):m_pItem(pItem),m_carac(ITEM_A) {}
+		void SetContenueCase(CItem *pItem){ m_carac = ITEM_A; m_pItem = pItem;}
+		friend std::ostream& operator<<(std::ostream &os, const CContenuCase& c){ return os << c.GetCarac(); }
 		
 		CItem * GetItem() const{ return m_pItem; }
-		bool operator==(const contenuCase& c) const { return m_carac == c.getCarac(); }
-		bool operator!=(const contenuCase& c) const { return !(*this == c); }
-		contenuCase& operator=(const contenuCase& c);
-		void Swap(contenuCase& c);
+		bool operator==(const CContenuCase& c) const { return m_carac == c.GetCarac(); }
+		bool operator!=(const CContenuCase& c) const { return !(*this == c); }
+		CContenuCase& operator=(const CContenuCase& c);
+		void Swap(CContenuCase& c);
 
-		char getCarac() const{ return m_carac; }
+		char GetCarac() const{ return m_carac; }
 
-		contenuCase():m_carac(MUR_A),m_pItem(nullptr) {};
-		contenuCase(const contenuCase& c);
-		~contenuCase(){ if (m_pItem)delete m_pItem; };
+		CContenuCase():m_carac(MUR_A),m_pItem(nullptr) {};
+		CContenuCase(const CContenuCase& c);
+		~CContenuCase(){ if (m_pItem)delete m_pItem; };
 	};
-	static const contenuCase MUR, LIBRE, ENTREE, SORTIE, ITEM;
+	static const CContenuCase MUR, LIBRE, ENTREE, SORTIE, ITEM;
 
 private:
 
 	//Attributs
 	//Énum a adapter selon le format du fichier lu
-	static enum  caractereLu{ MUR_F = 'W', LIBRE_F = 'v',  ENTREE_F = 'd', SORTIE_F = 's' };
-	Pos m_debut;
+	static enum  e_CaractereLu{ MUR_F = 'W', LIBRE_F = 'v',  ENTREE_F = 'd', SORTIE_F = 's' };
+	CPos m_debut;
 	int m_largeur, m_hauteur; //dimensions réelles du labyrinthe
-	contenuCase m_grille[HAUTEURMAX][LARGEURMAX];    // tab 2d contenant les disponibilité des cases du labyrinthe
-	std::vector<Pos> m_casesLibres;  // disponibilité pour le reste du jeux qui voudrait placer des items ou  perso.
+	CContenuCase m_grille[HAUTEURMAX][LARGEURMAX];    // tab 2d contenant les disponibilité des cases du labyrinthe
+	std::vector<CPos> m_casesLibres;  // disponibilité pour le reste du jeux qui voudrait placer des items ou  perso.
 
 	std::vector<CItem> m_listeItems;
 
@@ -64,18 +64,18 @@ private:
 	//Accesseurs - mutateurs
 	void SetLargeur(int l);
 	void SetHauteur(int h);
-	void SetDebut(Pos d){ m_debut = d; }
+	void SetDebut(CPos d){ m_debut = d; }
 	
 
 	//Méthodes
-	void initialiserGrille();// met tous les char de la grille à "vide"
-	bool chargerLabyrinthe(std::string fichier);
+	void InitialiserGrille();// met tous les char de la grille à "vide"
+	bool ChargerLabyrinthe(std::string fichier);
 
-	void chargerCase(caractereLu grille[HAUTEURMAX][LARGEURMAX], int noLigne, int noColonne);
-	void ConvertirSympoles(caractereLu grille[HAUTEURMAX][LARGEURMAX]);	
-	contenuCase ConvertirSympoleADisponible(caractereLu symbole);
-	void placerItems();
-	contenuCase LireCase(int x, int y) const; //retourne le statut de la case selon l'énum.
+	void ChargerCases(e_CaractereLu grille[HAUTEURMAX][LARGEURMAX], int noLigne, int noColonne);
+	void ConvertirSympoles(e_CaractereLu grille[HAUTEURMAX][LARGEURMAX]);	
+	CContenuCase ConvertirSympoleADisponible(e_CaractereLu symbole);
+	void PlacerItems();
+	CContenuCase LireCase(int x, int y) const; //retourne le statut de la case selon l'énum.
 
 	//Constructeur
 	CLabyrinthe() = delete;
@@ -87,17 +87,17 @@ public:
 	
 	int GetLargeur() const;						// largeur utilisée par le labyrinthe
 	int GetHauteur() const;						// hauteur utilisée par le labyrinthe
-	Pos GetDebut() const{ return m_debut; }		// position de départ du labyrinthe	
-	std::vector<Pos> GetCasesLibres() const;	// vecteur de positions de toutes les cases vides.
+	CPos GetDebut() const{ return m_debut; }		// Position de départ du labyrinthe	
+	std::vector<CPos> GetCasesLibres() const;	// vecteur de positions de toutes les cases vides.
 	
-	bool placerItemCase(Pos caseAOccuper);		// inscrit un item dans la grille, retourne vrai si c'est fait
-	bool enleverItemCase(Pos caseAVider);		// libère une case de la grille, retourne faux s'il n'y avais pas d'item à retirer
+	bool PlacerItemCase(CPos caseAOccuper);		// inscrit un item dans la grille, retourne vrai si c'est fait
+	bool EnleverItemCase(CPos caseAVider);		// libère une case de la grille, retourne faux s'il n'y avais pas d'item à retirer
 	
-	contenuCase LireCase(Pos p) const;		//retourne le statut de la case selon l'énum version Pos.
+	CContenuCase LireCase(CPos p) const;		//retourne le statut de la case selon l'énum version CPos.
 
-	VECTEUR_INFOCASE LireCasesVisibles(Pos posJoueur, int radiusVue) const;
+	VECTEUR_INFOCASE LireCasesVisibles(CPos posJoueur, int radiusVue) const;
 
-	const contenuCase* GetGrille() const { return *m_grille; }   // tab 2d contenant les disponibilité des cases du labyrinthe
+	const CContenuCase* GetGrille() const { return *m_grille; }   // tab 2d contenant les disponibilité des cases du labyrinthe
 	
 	// pour debogage seulement
 	//void afficher() const;

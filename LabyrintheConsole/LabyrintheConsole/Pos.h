@@ -1,23 +1,23 @@
 #pragma once
 
-class Pos
+class CPos
 {
 public:
 	int x, y;
 	
-	Pos() throw() : x{ }, y{ } {  }
-	Pos(const int _x, const int _y) throw() : x{ _x }, y{ _y } {  }
-	~Pos() = default; 
+	CPos() throw() : x{ }, y{ } {  }
+	CPos(const int _x, const int _y) throw() : x{ _x }, y{ _y } {  }
+	~CPos() = default; 
 	
-	bool operator==(const Pos &p) const throw()
+	bool operator==(const CPos &p) const throw()
 	{
 		return x == p.x && y == p.y;
 	}
-	bool operator!=(const Pos &p) const throw()
+	bool operator!=(const CPos &p) const throw()
 	{
 		return !(*this == p);
 	}
-	bool operator<(const Pos &p) const throw()
+	bool operator<(const CPos &p) const throw()
 	{
 		bool plusPetit = false;
 		if (y < p.y)

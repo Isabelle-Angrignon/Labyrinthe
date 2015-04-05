@@ -12,7 +12,7 @@ int main()
 	MonJeu.AfficherEtat();
 	Commande c;
 
-	while (!MonJeu.Fini() && (c = Menu::LireCommande(), c != Menu::QUITTER))
+	while (!MonJeu.Fini() && (c = CMenu::LireCommande(), c != CMenu::QUITTER))
 	{
 		MonJeu.Executer(c);
 		MonJeu.AfficherEtat();

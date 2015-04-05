@@ -1,13 +1,13 @@
 #pragma once
 #include "Personnage.h"
 
-CPersonnage::CPersonnage(Pos depart) 
+CPersonnage::CPersonnage(CPos depart) 
 	: m_position{ depart }, m_nbrDePas{ NBREDEPASDEFAUT }, m_vision{ VISIONDEFAUT }
 {
 		
 }
 
-void CPersonnage::SetPosition(Pos p)
+void CPersonnage::SetPosition(CPos p)
 {
 	m_position = p;
 }
@@ -18,23 +18,23 @@ void CPersonnage::SetPosition(const int x, const int y)
 }
 
 
-Pos CPersonnage::Destination(direction d)
+CPos CPersonnage::Destination(e_Direction d)
 {	
-	Pos destination(GetPosition());
+	CPos destination(GetPosition());
 
 	switch (d)
 	{
 	case HAUT:
-		destination = Pos(m_position.x, m_position.y - 1);
+		destination = CPos(m_position.x, m_position.y - 1);
 		break;
 	case DROITE:
-		destination = Pos(m_position.x + 1, m_position.y);
+		destination = CPos(m_position.x + 1, m_position.y);
 		break;
 	case BAS:
-		destination = Pos(m_position.x, m_position.y + 1);
+		destination = CPos(m_position.x, m_position.y + 1);
 		break;
 	case GAUCHE:
-		destination = Pos(m_position.x - 1, m_position.y);
+		destination = CPos(m_position.x - 1, m_position.y);
 		break;
 	default:
 		break; 
@@ -43,7 +43,7 @@ Pos CPersonnage::Destination(direction d)
 }
 
 
-void CPersonnage::RamasserItem(std::pair<int, CItem::TypeBonus> i)
+void CPersonnage::RamasserItem(std::pair<int, CItem::e_TypeBonus> i)
 {
 	switch (i.second)
 	{
