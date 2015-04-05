@@ -1,6 +1,6 @@
-#include <iostream>
-#include <string>
-#include "Labyrinthe.h"
+//#include <iostream>
+//#include <string>
+//#include "Labyrinthe.h"
 #include "Partie.h"
 #include "Menu.h"
 
@@ -10,7 +10,7 @@ int main()
 {
 	CPartie MonJeu("Labyrinthe.csv");
 	MonJeu.AfficherEtat();
-	Commande c;
+	CCommande c;
 
 	while (!MonJeu.Fini() && (c = CMenu::LireCommande(), c != CMenu::QUITTER))
 	{

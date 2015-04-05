@@ -2,8 +2,11 @@
 #include <string>
 #include <vector>
 #include <sstream>
+#include <functional>
+
 #include "Pos.h"
 #include "Item.h"
+#include "ContenuCase.h"
 
 
 // hors contexte, utilitaire
@@ -15,37 +18,14 @@ std::vector<std::string> Split(const std::string &s, char delim);
 class CLabyrinthe
 {	 
 public:	
-	class CContenuCase;
+	/*class CContenuCase;*/
 
-	typedef std::vector<std::pair<CPos, CLabyrinthe::CContenuCase>> VECTEUR_INFOCASE;
-	typedef std::pair<CPos, CLabyrinthe::CContenuCase> INFOCASE;
+	typedef std::vector<std::pair<CPos, CContenuCase>> VECTEUR_INFOCASE;
+	typedef std::pair<CPos, CContenuCase> INFOCASE;
 
 	static const int LARGEURMAX = 80;      //Maximum affichable en console
 	static const int HAUTEURMAX = LARGEURMAX; //garder un format carré
 	
-	class CContenuCase
-	{
-		char m_carac;
-		CItem * m_pItem;
-	public:
-		static enum e_CaractereAAfficher{ MUR_A = '#', LIBRE_A = '.', ENTRE_A = 'A', SORTIE_A = 'S',ITEM_A = 'I' };
-		CContenuCase(e_CaractereAAfficher c) :m_carac(c){}
-		CContenuCase(CItem * pItem):m_pItem(pItem),m_carac(ITEM_A) {}
-		void SetContenueCase(CItem *pItem){ m_carac = ITEM_A; m_pItem = pItem;}
-		friend std::ostream& operator<<(std::ostream &os, const CContenuCase& c){ return os << c.GetCarac(); }
-		
-		CItem * GetItem() const{ return m_pItem; }
-		bool operator==(const CContenuCase& c) const { return m_carac == c.GetCarac(); }
-		bool operator!=(const CContenuCase& c) const { return !(*this == c); }
-		CContenuCase& operator=(const CContenuCase& c);
-		void Swap(CContenuCase& c);
-
-		char GetCarac() const{ return m_carac; }
-
-		CContenuCase():m_carac(MUR_A),m_pItem(nullptr) {};
-		CContenuCase(const CContenuCase& c);
-		~CContenuCase(){ if (m_pItem)delete m_pItem; };
-	};
 	static const CContenuCase MUR, LIBRE, ENTREE, SORTIE, ITEM;
 
 private:
@@ -57,10 +37,10 @@ private:
 	int m_largeur, m_hauteur; //dimensions réelles du labyrinthe
 	CContenuCase m_grille[HAUTEURMAX][LARGEURMAX];    // tab 2d contenant les disponibilité des cases du labyrinthe
 	std::vector<CPos> m_casesLibres;  // disponibilité pour le reste du jeux qui voudrait placer des items ou  perso.
-
+	
 	std::vector<CItem> m_listeItems;
-
-
+		
+	
 	//Accesseurs - mutateurs
 	void SetLargeur(int l);
 	void SetHauteur(int h);
@@ -74,11 +54,15 @@ private:
 	void ChargerCases(e_CaractereLu grille[HAUTEURMAX][LARGEURMAX], int noLigne, int noColonne);
 	void ConvertirSympoles(e_CaractereLu grille[HAUTEURMAX][LARGEURMAX]);	
 	CContenuCase ConvertirSympoleADisponible(e_CaractereLu symbole);
+	
+	static CItem* CreerItemBouffe(CPos p);
+	static CItem* CreerItemTorche(CPos p);
+	void PlacerUnTypeItem(std::function<CItem* (CPos p)> modele, int nbreItem, std::vector<CPos> &liste);
 	void PlacerItems();
 	CContenuCase LireCase(int x, int y) const; //retourne le statut de la case selon l'énum.
 
 	//Constructeur
-	CLabyrinthe() = delete;
+	CLabyrinthe() = default;
 
 public:
 	//Constructeur - destructeur
@@ -98,8 +82,6 @@ public:
 	VECTEUR_INFOCASE LireCasesVisibles(CPos posJoueur, int radiusVue) const;
 
 	const CContenuCase* GetGrille() const { return *m_grille; }   // tab 2d contenant les disponibilité des cases du labyrinthe
-	
-	// pour debogage seulement
-	//void afficher() const;
+
 };
 

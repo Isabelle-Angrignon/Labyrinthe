@@ -56,5 +56,22 @@ void CPersonnage::RamasserItem(std::pair<int, CItem::e_TypeBonus> i)
 		default:
 			break;
 	}
+}
+
+void CPersonnage::AnnulerEffetItem(std::pair<int, CItem::e_TypeBonus> i)
+{
+	switch (i.second)
+	{	
+	case CItem::PAS:
+		//Effet permanent
+		break;
+
+	case CItem::VISION:
+		m_vision -= i.first;
+		break;
+	
+	default:
+		break;
+	}
 
 }

@@ -113,7 +113,7 @@ void CLabyrinthe::ConvertirSympoles(e_CaractereLu grille[HAUTEURMAX][LARGEURMAX]
 			m_grille[i][j] = ConvertirSympoleADisponible(grille[i][j]);
 }
 
-CLabyrinthe::CContenuCase CLabyrinthe::ConvertirSympoleADisponible(e_CaractereLu symbole)
+CContenuCase CLabyrinthe::ConvertirSympoleADisponible(e_CaractereLu symbole)
 {
 	switch (symbole)
 	{
@@ -149,26 +149,44 @@ std::vector<CPos> CLabyrinthe::GetCasesLibres() const
 	return m_casesLibres;
 }
 
+CItem* CLabyrinthe::CreerItemBouffe(CPos p)
+{
+	return new CItem(p, 'B', CItem::PAS, 0, 5);
+}
+
+CItem* CLabyrinthe::CreerItemTorche(CPos p)
+{
+	return new CItem(p, 'V', CItem::VISION, 10, 2);
+}
+
+void CLabyrinthe::PlacerUnTypeItem(std::function<CItem* (CPos)> modele, int nbreItem, std::vector<CPos> &liste)
+{
+	//push dans item
+	CPos p = liste[liste.size() - 1];
+	for (int i = 0; i < nbreItem && !liste.empty(); ++i)
+	{
+		m_grille[p.y][p.x].SetContenueCase(modele(liste[liste.size() - 1]));
+		liste.pop_back();
+		if (!liste.empty())
+			p = liste[liste.size() - 1];
+		else
+			break;
+	}
+}
+
 void CLabyrinthe::PlacerItems()
 {
 	//trouver liste dispo
 	std::vector<CPos> dispo = GetCasesLibres();
+
 	//shuffle dispo
+	srand(time(NULL));//Génère une "table aléatoire"
 	std::random_shuffle(begin(dispo), end(dispo));
-	//push dans item
-	CPos p = dispo[dispo.size() - 1];
-	for (int i = 0; i < 3; ++i)
-	{
-		m_grille[p.y][p.x].SetContenueCase(new CItem(dispo[dispo.size() - 1], 'B', CItem::PAS, 5));
-		dispo.pop_back();
-		p = dispo[dispo.size() - 1];
-	}
-	for (int i = 0; i < 3; ++i)
-	{
-		m_grille[p.y][p.x].SetContenueCase(new CItem(dispo[dispo.size() - 1], 'V', CItem::VISION, 2));
-		dispo.pop_back();
-		p = dispo[dispo.size() - 1];
-	}	
+
+	// Placer 3 Bonus de chaque modele
+	PlacerUnTypeItem([](CPos p){return CLabyrinthe::CreerItemBouffe(p); }, 3, dispo);
+	PlacerUnTypeItem([](CPos p){return CLabyrinthe::CreerItemTorche(p); }, 3, dispo);
+
 }
 
 bool CLabyrinthe::PlacerItemCase(CPos caseAOccuper)
@@ -198,20 +216,20 @@ bool CLabyrinthe::EnleverItemCase(CPos caseAVider)
 	{
 		m_grille[caseAVider.y][caseAVider.x] = LIBRE;
 		m_casesLibres.push_back(caseAVider);
-		sort(begin(m_casesLibres), end(m_casesLibres));		
+		sort(begin(m_casesLibres), end(m_casesLibres));	///inutlie	
 	}
 	return libre; 	
 }
 
-CLabyrinthe::CContenuCase CLabyrinthe::LireCase(int x, int y) const
+CContenuCase CLabyrinthe::LireCase(int x, int y) const
 {
-	CLabyrinthe::CContenuCase dispo = MUR;
+	CContenuCase dispo = MUR;
 	if (x >= 0 && x < GetLargeur() && y >= 0 && y < GetHauteur() )
 		dispo = m_grille[y][x];
 	return dispo;
 }
 
-CLabyrinthe::CContenuCase CLabyrinthe::LireCase(CPos p) const
+CContenuCase CLabyrinthe::LireCase(CPos p) const
 {	
 	return LireCase(p.x, p.y);
 }
@@ -239,31 +257,10 @@ CLabyrinthe::VECTEUR_INFOCASE CLabyrinthe::LireCasesVisibles(CPos posJoueur, int
 	return cases;
 }
 
-const CLabyrinthe::CContenuCase
-CLabyrinthe::MUR = CLabyrinthe::CContenuCase(CLabyrinthe::CContenuCase::MUR_A),
-CLabyrinthe::LIBRE = CLabyrinthe::CContenuCase(CLabyrinthe::CContenuCase::LIBRE_A),
-CLabyrinthe::ENTREE = CLabyrinthe::CContenuCase(CLabyrinthe::CContenuCase::ENTRE_A),
-CLabyrinthe::SORTIE = CLabyrinthe::CContenuCase(CLabyrinthe::CContenuCase::SORTIE_A),
-CLabyrinthe::ITEM = CLabyrinthe::CContenuCase(CLabyrinthe::CContenuCase::ITEM_A);
+const CContenuCase
+CLabyrinthe::MUR = CContenuCase(CContenuCase::MUR_A),
+CLabyrinthe::LIBRE = CContenuCase(CContenuCase::LIBRE_A),
+CLabyrinthe::ENTREE = CContenuCase(CContenuCase::ENTRE_A),
+CLabyrinthe::SORTIE = CContenuCase(CContenuCase::SORTIE_A),
+CLabyrinthe::ITEM = CContenuCase(CContenuCase::ITEM_A);
 
-CLabyrinthe::CContenuCase::CContenuCase(const CContenuCase& c)
-{
-	m_carac = c.GetCarac(); 
-	if (c.GetItem())
-		m_pItem = new CItem(*c.GetItem());
-	else
-		m_pItem = nullptr;
-}
-
-void CLabyrinthe::CContenuCase::Swap(CContenuCase& c)
-{
-	using std::swap;
-	swap(m_carac, c.m_carac);
-	swap(m_pItem, c.m_pItem);
-}
-
-CLabyrinthe::CContenuCase& CLabyrinthe::CContenuCase::operator=(const CContenuCase& c)
-{
-	CContenuCase{ c }.Swap(*this);
-	return *this;	
-}

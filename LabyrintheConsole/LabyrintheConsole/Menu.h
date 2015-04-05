@@ -6,7 +6,7 @@
 class CMenu
 {
 public:
-	static const Commande HAUT, GAUCHE, DROITE, BAS, QUITTER;
-	static Commande LireCommande();
+	static const CCommande HAUT, GAUCHE, DROITE, BAS, QUITTER;
+	static CCommande LireCommande();
 };
 

@@ -3,6 +3,7 @@
 #include "Personnage.h"
 #include "Pos.h"
 #include "Item.h"
+#include "Evenements.h"
 
 #include <vector>
 #include <string>
@@ -11,7 +12,7 @@
 #include <Windows.h>
 
 
-class Commande;
+class CCommande;
 
 class CPartie
 { 
@@ -20,7 +21,7 @@ public:
 
 	CPartie(std::string filePath);
 	void AfficherEtat() const;
-	void Executer(const Commande &c);
+	void Executer(const CCommande &c);
 	bool Fini() const;
 
 	~CPartie() = default;
@@ -30,6 +31,7 @@ private:
 
 	CLabyrinthe m_Lab;
 	CPersonnage m_Personnage;
+	CEvenements m_Evenements;
 	void TraiterDirection(CPersonnage::e_Direction d, CPersonnage & p);
 	const std::string MESSAGEGAGNANT = "Bravo! Vous avez trouve la sortie !";
 	const std::string MESSAGEPERDANT = "Trop long! Vous avez perdu !";

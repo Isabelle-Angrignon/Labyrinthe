@@ -19,6 +19,7 @@ public:
 	bool EstVivant() const { return GetNbreDePas() > 0; }
 
 	void RamasserItem(std::pair<int, CItem::e_TypeBonus>);
+	void AnnulerEffetItem(std::pair<int, CItem::e_TypeBonus>);
 	
 	CPos Destination(e_Direction d);
 	void SetPosition(CPos p);

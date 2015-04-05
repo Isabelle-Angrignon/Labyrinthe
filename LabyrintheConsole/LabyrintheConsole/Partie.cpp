@@ -66,7 +66,7 @@ void CPartie::GereFin() const
 	}
 }
 
-void CPartie::Executer(const Commande &c)
+void CPartie::Executer(const CCommande &c)
 {
 	if (c == CMenu::HAUT)
 		TraiterDirection(CPersonnage::HAUT, m_Personnage);
@@ -93,15 +93,17 @@ bool CPartie::Fini() const
 
 void CPartie::TraiterDirection(CPersonnage::e_Direction d, CPersonnage & p)
 {
-	CLabyrinthe::CContenuCase dispo = m_Lab.LireCase(p.Destination(d));
-	if (dispo != CLabyrinthe::MUR)
+	CContenuCase contenuCase = m_Lab.LireCase(p.Destination(d));
+	if (contenuCase != CLabyrinthe::MUR)
 	{
 		p.SetPosition(p.Destination(d));
 		p.AvancerUnPas();
-		if (dispo == CLabyrinthe::ITEM)
+		if (contenuCase == CLabyrinthe::ITEM)
 		{
-			p.RamasserItem(dispo.GetItem()->Consommer());
-			m_Lab.EnleverItemCase(dispo.GetItem()->GetPosition());
+			p.RamasserItem(contenuCase.GetItem()->Consommer());
+			m_Evenements.AjouterEvenement(contenuCase.GetItem()->GetDuree(), [&p, contenuCase](){ p.AnnulerEffetItem(contenuCase.GetItem()->Consommer()); }  );
+			m_Lab.EnleverItemCase(contenuCase.GetItem()->GetPosition());
 		}
 	}
+	m_Evenements.ExecuterEvenements();
 }
