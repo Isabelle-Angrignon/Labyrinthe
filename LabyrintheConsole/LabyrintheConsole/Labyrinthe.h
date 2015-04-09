@@ -18,7 +18,6 @@ std::vector<std::string> Split(const std::string &s, char delim);
 class CLabyrinthe
 {	 
 public:	
-	/*class CContenuCase;*/
 
 	typedef std::vector<std::pair<CPos, CContenuCase>> VECTEUR_INFOCASE;
 	typedef std::pair<CPos, CContenuCase> INFOCASE;
@@ -37,15 +36,12 @@ private:
 	int m_largeur, m_hauteur; //dimensions réelles du labyrinthe
 	CContenuCase m_grille[HAUTEURMAX][LARGEURMAX];    // tab 2d contenant les disponibilité des cases du labyrinthe
 	std::vector<CPos> m_casesLibres;  // disponibilité pour le reste du jeux qui voudrait placer des items ou  perso.
-	
-	std::vector<CItem> m_listeItems;
-		
+	std::vector<CItem> m_listeItems;		
 	
 	//Accesseurs - mutateurs
 	void SetLargeur(int l);
 	void SetHauteur(int h);
-	void SetDebut(CPos d){ m_debut = d; }
-	
+	void SetDebut(CPos d){ m_debut = d; }	
 
 	//Méthodes
 	void InitialiserGrille();// met tous les char de la grille à "vide"

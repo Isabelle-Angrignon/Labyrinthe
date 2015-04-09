@@ -1,6 +1,3 @@
-//#include <iostream>
-//#include <string>
-//#include "Labyrinthe.h"
 #include "Partie.h"
 #include "Menu.h"
 

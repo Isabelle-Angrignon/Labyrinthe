@@ -8,9 +8,9 @@
 class CPersonnage
 {
 public:
-	static const char m_avatar = 'Q';//'☺';
+	static const char m_avatar = 'Q';
 	static enum e_Direction { HAUT, DROITE, BAS, GAUCHE };
-	static const int NBREDEPASDEFAUT = 15000;
+	static const int NBREDEPASDEFAUT = 50;
 	static const int VISIONDEFAUT = 2;
 	
 	int GetNbreDePas() const { return m_nbrDePas; }
