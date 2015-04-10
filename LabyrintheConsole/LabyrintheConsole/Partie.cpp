@@ -4,9 +4,6 @@
 #include "Menu.h"
 #include "Commande.h"
 
-
-
-
 CPartie::CPartie(std::string filePath) 
 	: m_Lab(filePath), m_Personnage(m_Lab.GetDebut())
 {
