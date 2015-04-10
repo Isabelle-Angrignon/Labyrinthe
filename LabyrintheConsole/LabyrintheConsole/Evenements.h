@@ -17,21 +17,5 @@ public:
 	void ExecuterEvenements();
 };
 
-/*Class CEvenements
-{
 
-std::make_pair(Temps + combienDetemps, i);
-}
-Execute ()
-{
-for( auto & Pairs; Events)
-	{	
-		if(Pairs.first() == temps) 
-		Pairs.second()();
-	}
-}
 
-}
-
-setEvent(Item.getDuree, [&Personnage](){Personnage.Annuler(Effet);}->void);
-*/
